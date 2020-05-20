@@ -35,12 +35,31 @@ body
     background-color: beige;
 }
 
+.operation-key
+{
+    border: 0.1rem solid black;
+    border-radius: 0.8rem;
+    margin: 0.1rem;
+    background-color: green;
+}
+
 #zero
 {
-    display: flex;
-    text-align: end;
+    border: 0.2rem solid black;
+    border-radius: 0.8rem;
+    display: inline-block;
+    vertical-align: middle;
     grid-column: 1/3;
-    /* background-color: blue; */
+    background-color: blue;
+}
+
+#equal
+{
+    border: 0.2rem solid black;
+    border-radius: 0.8rem;
+    grid-row: 5/7;
+    grid-column: 4/5;
+    background-color: yellow;
 }
 /* .row-one
 {
