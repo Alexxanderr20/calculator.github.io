@@ -1,16 +1,17 @@
 /*
     Edward Alexander Munoz
 */
+
 let operation = '';
+let totalValue = '0';
 let currentValue = '0';
 let maxDisplayLength = '10';
-
-// let numbers = document.querySelectorAll('.number');
+let displayValue = document.querySelector('.displayText');
+let historyValue = document.querySelector('.historyText');
 let operations = document.querySelectorAll('.operation-key');
-let clearButton = document.querySelector('clear-button');
 let deleteButton = document.querySelector('delete-button');
 let equalButton = document.querySelectorAll('equal-button');
-let display = document.querySelector('#display');
+// let display = document.querySelector('#display-values');
 
 
 //pulls number input and outputs to screen
@@ -18,9 +19,9 @@ const numbers = document.querySelectorAll('.number');
 numbers.forEach((number) => {
     number.addEventListener('click', (e) =>
     {
-        if(!display.innerHTML || operation === '=')
+        if(!displayValue.innerHTML || operation === '=')
         {
-            display.innerHTML = number.id;
+            displayValue.innerHTML = number.id;
             if(operation === '=')
             {
                 operation = '';
@@ -28,18 +29,30 @@ numbers.forEach((number) => {
         }
         else
         {
-            if(display.innerHTML.length > maxDisplayLength)
+            if(displayValue.innerHTML.length > maxDisplayLength)
             {
-                display.innerHTML = 'infinity';
+                displayValue.innerHTML = 'infinity';
             }
-            display.innerHTML += number.id;
+            displayValue.innerHTML += number.id;
         }
-            currentValue = display.innerHTML;
+            currentValue = displayValue.innerHTML;
     });
 });
 
-//basic calculator functions
 
+//allows user to clear calculator screen
+let clearButton = document.getElementById('clear-button');
+    clearButton.addEventListener('click',(e) =>
+    {
+        displayValue.innerHTML = '';
+        historyValue.innerHTML = '';
+        currentValue = '0';
+        total = '0';
+        operation = '';
+    })
+
+
+//basic calculator functions
 function add(x,y)
 {
     return x + y;
@@ -60,6 +73,7 @@ function divide(x, y)
     return x / y;
 }
 
+//runs through and determines operation based on user input
 function operate(x,y,operator)
 {
     switch(operator)
@@ -74,3 +88,14 @@ function operate(x,y,operator)
             return divide(x,y);
     }
 }
+
+
+// //Takes user input and  applies operations
+    function calculate(x)
+    {
+        
+    }
+
+
+    // firstValue = numbers.id;
+    // console.log(firstValue);
