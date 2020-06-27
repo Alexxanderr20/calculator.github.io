@@ -8,10 +8,8 @@ let currentValue = '0';
 let maxDisplayLength = '10';
 let displayValue = document.querySelector('.displayText');
 let historyValue = document.querySelector('.historyText');
-let operations = document.querySelectorAll('.operation-key');
 let deleteButton = document.querySelector('delete-button');
 let equalButton = document.querySelectorAll('equal-button');
-// let display = document.querySelector('#display-values');
 
 
 //pulls number input and outputs to screen
@@ -29,13 +27,13 @@ numbers.forEach((number) => {
         }
         else
         {
+            currentValue = displayValue.innerHTML;
             if(displayValue.innerHTML.length > maxDisplayLength)
             {
                 displayValue.innerHTML = 'infinity';
             }
-            displayValue.innerHTML += number.id;
         }
-            currentValue = displayValue.innerHTML;
+            displayValue.innerHTML += number.id;
     });
 });
 
@@ -51,6 +49,12 @@ let clearButton = document.getElementById('clear-button');
         operation = '';
     })
 
+//allows user to delete individual numbers
+let backSpace = document.getElementById('delete-button');
+backSpace.addEventListener('click', (e) => {
+    displayValue.innerHTML = displayValue.innerHTML.slice(0, displayValue.innerHTML.length - 1);
+    currentValue = displayValue.innerHTML;
+});
 
 //basic calculator functions
 function add(x,y)
@@ -70,7 +74,14 @@ function multiply(x,y)
 
 function divide(x, y)
 {
-    return x / y;
+    if(y === '0')
+    {
+        displayValue.innerHTML = 'Infinity'
+    }
+    else
+    {
+        return x / y;
+    }
 }
 
 //runs through and determines operation based on user input
@@ -89,13 +100,3 @@ function operate(x,y,operator)
     }
 }
 
-
-// //Takes user input and  applies operations
-    function calculate(x)
-    {
-        
-    }
-
-
-    // firstValue = numbers.id;
-    // console.log(firstValue);

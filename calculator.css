@@ -1,14 +1,17 @@
 body
 {
     margin: 0;
+    /* background-color: black; */
 }
 
 #main
 {
+    text-align: center;
+    font-size: 1.5rem;
     display: grid;
-    border: 0.5rem solid black;
+    border: 0.4rem solid black;
+    border-radius: 0.9rem;
     width: 22rem;
-    font-size: 2rem;
     margin-top: 15rem;
     justify-content: center;
     justify-self: center;
@@ -25,8 +28,9 @@ body
     align-items: center;
 }
 
-.display
+.screenContainer
 {
+    text-align: left;
     grid-column: 1/5;
     border: 0.20rem solid black;
     width: 20rem;
@@ -37,14 +41,40 @@ body
 
 .operation-key
 {
+    font-size: 2.25rem;
     border: 0.1rem solid black;
     border-radius: 0.8rem;
     margin: 0.1rem;
     background-color: green;
 }
 
+#clear-button
+{
+    margin-right: 0.3rem;
+    border: 0.2rem solid black;
+    border-radius: 0.8rem;
+    background-color: aquamarine;
+}
+
+#delete-button
+{
+    margin-right: 0.3rem;
+    border: 0.2rem solid black;
+    border-radius: 0.8rem;
+    background-color: rebeccapurple;
+}
+
+.number
+{
+    margin: 0.1rem;
+    border: 0.2rem solid black;
+    border-radius: 0.8rem;
+    background-color: darkgoldenrod;
+}
+
 #zero
 {
+    margin: 0.2rem;
     border: 0.2rem solid black;
     border-radius: 0.8rem;
     display: inline-block;
@@ -53,8 +83,18 @@ body
     background-color: blue;
 }
 
-#equal
+#period
 {
+    border: 0.2rem solid black;
+    border-radius: 0.8rem;
+    margin-left: 0.25rem;
+    margin-right: 0.25rem;
+    background-color: white;
+}
+
+#equal-button
+{
+    margin: 0.2rem;
     border: 0.2rem solid black;
     border-radius: 0.8rem;
     grid-row: 5/7;
