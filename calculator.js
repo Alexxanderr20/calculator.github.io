@@ -12,18 +12,12 @@ let equalButtonPush;
 
 const equalButton = document.querySelector('.equalButton');
 const displayValue = document.querySelector('.displayText');
-const numbers = document.querySelectorAll('.number');
+const numberButton = document.querySelectorAll('.number');
 const operator = document.querySelectorAll('.operation');
-//let historyValue = document.querySelector('.historyText');
-//let equalButton = document.querySelectorAll('equal-button');
-
-//pulls number input and outputs to screen
-//const numbers = document.querySelectorAll('.number');
-//numbers.forEach((number) => {
 
     function add(x,y)
     {
-        return x + y;
+        return +x + +y;
     }
 
     function subtract(x,y)
@@ -40,7 +34,7 @@ const operator = document.querySelectorAll('.operation');
     {
         if(y === '0')
         {
-            displayValue.innerHTML = 'infinte'
+            displayValue.innerHTML = 'infinty';
         }
         else
         {
@@ -50,30 +44,32 @@ const operator = document.querySelectorAll('.operation');
 
     function getNumbers()
     {
-        for(let i = 0; i < numbers.length; i++)
+        for(let i = 0; i < numberButton.length; i++)
         {
-            numbers[i].addEventListener('click', (e) =>
+            numberButton[i].addEventListener('click', (e) =>
             {
                 const maxDisplayLength = 12;
                 if(numString.length < maxDisplayLength && operatorButtonPush === false)
                     {
-                        numString += numbers[i].textContent;
-                        displayValue.textContent = numString;
+                        numString += numberButton[i].innerHTML;
+                        displayValue.innerHTML = numString;
                         firstValue = numString;
-                        console.log(`firstValue = ${firstValue}`);
+                        //console.log(`firstValue  ${firstValue}`);
                     }
                 else if(numString.length < maxDisplayLength && operatorButtonPush === true)
                     {
-                        numString += numbers[i].textContent;
+                        numString += numberButton[i].innerHTML;
                         console.log(numString);
-                        displayValue.textContent = numString;
+                        displayValue.innerHTML = numString;
                         secondValue = numString;
-                        console.log(`secondValue = ${secondValue}`);
+                        //console.log(`secondValue  ${secondValue}`);
                     }
                 else
                     {
                     console.log('not working lol')
                     }
+                    numButtonPush = true;
+                    equalButtonPush = false;
             });
     }};
 
@@ -82,21 +78,21 @@ const operator = document.querySelectorAll('.operation');
     {
         for(let j = 0; j < operator.length; j++)
         {
-            operator[j].addEventListener('click', (e) => 
+            operator[j].addEventListener('click', (e) =>
             {
                 if(numButtonPush === true && secondValue === undefined)
                     {
-                        currentOperation = operator[j].textContent;
+                        currentOperation = operator[j].innerHTML;
                         console.log(`Condition 1: ${currentOperation}`);
                         operatorButtonPush = true;
                         numButtonPush = false;
                     }
                 if(firstValue !== undefined && secondValue !== undefined && operatorButtonPush === true)
                 {
-                    const temporaryValue = operate(firstValue, secondValue, operation);
-                    displayValue.textContent = ' = ' + temporaryValue.toString().slice(0, 13);
-                    currentOperation = operator[j].textContent;
-                    console.log(`Conditional 2: ${currentOperation}`);
+                    const temporaryValue = operate(firstValue, secondValue, currentOperation);
+                    displayValue.innerHTML = temporaryValue;
+                    currentOperation = operator[j].innerHTML;
+                    //console.log(`Conditional 2: ${currentOperation}`);
 
                     firstValue = temporaryValue;
                     secondValue = undefined;
@@ -113,8 +109,8 @@ const operator = document.querySelectorAll('.operation');
             if(operatorButtonPush === true && equalButtonPush === false && firstValue !== undefined && secondValue !== undefined)
             {
                 finalValue = operate(firstValue,secondValue, currentOperation);
-                displayValue.textContent = " = " + finalValue.toString().slice(0,13);
-                console.log(finalValue);
+                displayValue.innerHTML = finalValue;
+                //console.log(finalValue);
             }
                 equalButtonPush = true;
         })
@@ -123,17 +119,17 @@ const operator = document.querySelectorAll('.operation');
     };
 
 
-    function operate(x,y,operator)
+    function operate(x,y, currentOperation)
         {
-            switch(operator)
+            switch(currentOperation)
                 {
                     case '+':
                         return add(x,y);
                         break;
                     case '-':
-                        return subtract(x,y);
+                        return subtract(x,y)
                         break;
-                    case '*':
+                     case 'x':
                         return multiply(x,y);
                         break;
                     case '÷':
@@ -142,17 +138,34 @@ const operator = document.querySelectorAll('.operation');
                 }
         }
 
+
+function clearCal()
+{
+    firstValue = undefined;
+    secondValue = undefined;
+    numString = '';
+    numString = '';
+    numButtonPush = false;
+    operatorButtonPush = false;
+    equalButtonPush = undefined;
+    displayValue.innerHTML = '';
+}
+
+function calculate()
+{
+    getNumbers();
+    getOperation();
+    equalFunction();
+    clearCal();
+}
+
+calculate();
+
 //allows user to clear calculator screen
 let clearButton = document.getElementById('clear-button');
     clearButton.addEventListener('click',(e) =>
     {
-        displayValue.innerHTML = '';
-        firstValue = '';
-        secondValue = '';
-        numString = '';
-        currentOperation = '';
-        numButtonPush = false;
-        operatorButtonPush = false;
+        return clearCal();
     });
 
 //allows user to delete individual numbers
@@ -162,11 +175,3 @@ backSpace.addEventListener('click', (e) => {
     currentValue = displayValue.innerHTML;
 });
 
-function calculate()
-{
-    getNumbers();
-    getOperation();
-    equalFunction();
-}
-
-calculate();
