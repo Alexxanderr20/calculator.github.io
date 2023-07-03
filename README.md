@@ -1,0 +1,1 @@
+This is a project that I took from The Odin Project, where I used HTML, CSS, and JavaScript to create a functional desktop calculator. In this project, I was already reasonably comfortable with HTML and CSS, I spent most of my time learning JavaScript and DOM manipulation to make the buttons work correctly. 
